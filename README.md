@@ -2,13 +2,13 @@
 
 A python software toolkit designed to enable greater Anki flashcard tagging, analysis and study. Specially engineered to handle the intense scaling demands of medical undergraduate degrees.
 
-The toolkit contains semantic medical auto-tagging (Based on a MeSH API interface), card log analytics optimization, and automated cross-platform Markdown knowledge.
+Toolkit contains semantic medical tagging (Based on a MeSH API interface), card log analytics optimization, and automated cross-platform Markdown knowledge.
 
 ---
 
 ## Architecture
 
-The workspace is organized to eliminate structural duplication:
+Workspace is organized to eliminate structural duplication:
 
 ```
 anki-toolkit/
@@ -30,6 +30,24 @@ anki-toolkit/
 │       ├── __init__.py
 │       ├── mesh_tagger.py    # Semantic processing & NLM MeSH API interface
 │       ├── performance.py    # Historical card analytics tracker & tagger
-│       └── obsidian.py       # Vault syncing pipeline & analytical reporter
+│       └── report.py         # .md analytical reporter
 │
 └── run.py                    # Unified entry point / CLI subcommand router
+```
+## Execution commands
+For tagging cards based difficulty statistics (Fail rate and speed)
+```
+python3 run.py tag-stats
+```
+For MeSH API based tagging
+```
+python3 run.py tag-mesh
+```
+For .md daily report
+```
+python3 run.py export-report
+```
+### To Do:
+
+- Refactor API
+- Embeeding based tagging
