@@ -15,13 +15,13 @@ anki-toolkit/
 │
 ├── config.py                 # Centralized configuration manager (.env loader)
 ├── requirements.txt          # Third-party dependency registry
-├── .env.example              # Blueprint template for local environmental setup
+├── env.example              # Blueprint template for local environmental setup
 ├── tag_preferences.json      # Dynamic cache storing user interactive tag choices
 │
 ├── src/
 │   ├── __init__.py
 │   │
-│   ├── core/                 # Shared infrastructure (DRY design engine)
+│   ├── core/                 # Shared infrastructure
 │   │   ├── __init__.py
 │   │   ├── database.py       # Transaction handling, safe backups, & lock prevention
 │   │   └── parser.py         # Standardized text HTML text & cloze parsing utilities
@@ -34,7 +34,24 @@ anki-toolkit/
 │
 └── run.py                    # Unified entry point / CLI subcommand router
 ```
+## Initialization commands 
+Configure env.example, with 
+ANKI_DB_PATH="/Users/YOUR_NAME/Library/Application Support/Anki2/User 1/collection.anki2"
+JOURNAL_DIR="/Users/YOUR_NAME/Desktop/"
+
+Clone environment
+```
+cp env.example .env
+```
+Install dependencies
+```
+pip install -r requirements.txt
+python3 -m spacy download en_core_web_sm
+```
+
+---
 ## Execution commands
+
 For tagging cards based difficulty statistics (Fail rate and speed)
 ```
 python3 run.py tag-stats
