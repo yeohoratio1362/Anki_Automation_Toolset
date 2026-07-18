@@ -70,5 +70,6 @@ python3 run.py export-report
 ```
 ### To Do:
 
+- Card as class
 - Refactor API
-- Embeeding based tagging
+- Embedding based tagging
