@@ -37,7 +37,7 @@ anki-toolkit/
 ## Initialization commands 
 Configure env.example, critically the following: 
 - Anki database path (ANKI_DB_PATH)
-  - Windows: "%APPDATA%\Anki2"
+  - Windows: "\Users\YOUR_NAME\AppData\Roaming\Anki2\User 1\collection.anki2"
   - Mac: "/Users/YOUR_NAME/Library/Application Support/Anki2/User 1/collection.anki2"
 - JOURNAL_DIR="/Users/YOUR_NAME/Desktop/"
 
