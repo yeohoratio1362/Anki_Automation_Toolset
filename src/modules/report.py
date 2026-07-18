@@ -143,7 +143,7 @@ SelfCare:
         for c in problem_cards:
             deck_full = id_to_deck.get(c["did"], "Unknown")
             deck_leaf = get_leaf_deck(deck_full)
-            markdown_body += f"|{c['cid']}|[[{deck_leaf}]]|{c['fail_rate']*100:.1f}%|{c['reviews']}|\n"
+            markdown_body += f"|{card.cid}|[[{deck_leaf}]]|{card.fail_percentage:.1f}%|{card.reviews}|\n"
 
         # Safe programmatic save execution
         today_str = datetime.now().strftime("%Y-%m-%d")
