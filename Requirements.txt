@@ -9,4 +9,4 @@ python-dotenv>=1.0.0
 
 # After installing dependencies, run the following command in your terminal to download the lightweight English semantic processing model used by the tool:
 
-python3 -m spacy download en_core_web_sm
+# python3 -m spacy download en_core_web_sm
