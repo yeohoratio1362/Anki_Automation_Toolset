@@ -41,6 +41,8 @@ Configure env.example, the following:
   - Mac: "/Users/YOUR_NAME/Library/Application Support/Anki2/User 1/collection.anki2"
 - JOURNAL_DIR="\Users\YOUR_NAME\Desktop"
 - MeSH XML path="\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\desc2026.xml"
+- MeSH History path = "\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\mesh_embeddings_cache.pkl"
+- MeSH cache path = "\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\mesh_tag_history.json"
 
 
 Others variables are optional and may be adjusted based on user preference
