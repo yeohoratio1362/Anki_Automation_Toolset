@@ -25,7 +25,7 @@ MESH_XML_PATH = getattr(config, "MESH_XML_PATH", "desc2026.xml")
 CACHE_PATH = getattr(config, "CACHE_PATH", "mesh_embeddings_cache.pkl")
 HISTORY_FILE = getattr(config, "HISTORY_FILE", "mesh_tag_history.json")
 
-# Mute routine HTTP request logs from underlying libraries
+# Mute routine HTTP request logs
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -43,7 +43,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 # ==========================================
 
 def load_tag_history() -> Dict[str, List[str]]:
-    """Loads the history of tags added by this script: { "note_id": ["mesh::tag1", "mesh::tag2"] }"""
+    # Loads the history of tags added
     if os.path.exists(HISTORY_FILE):
         try:
             with open(HISTORY_FILE, "r", encoding="utf-8") as f:
@@ -54,7 +54,7 @@ def load_tag_history() -> Dict[str, List[str]]:
 
 
 def save_tag_history(history: Dict[str, List[str]]) -> None:
-    """Saves updated script tag history to disk."""
+    # Saves updated script tag history
     try:
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:
             json.dump(history, f, indent=2)
@@ -83,7 +83,7 @@ def parse_mesh_xml(xml_path: str) -> List[str]:
                 name_elem = elem.find("./DescriptorName/String")
                 if name_elem is not None and name_elem.text:
                     descriptors.append(name_elem.text.strip())
-                elem.clear()  # Clear memory during iterative parsing
+                elem.clear()
                 
         logging.info(f"Successfully extracted {len(descriptors)} unique MeSH terms.")
         return sorted(list(set(descriptors)))
@@ -116,7 +116,7 @@ def get_ollama_embeddings(texts: List[str], batch_size: int = 64) -> torch.Tenso
 
 
 def get_or_create_mesh_cache(descriptors: List[str]) -> Tuple[List[str], torch.Tensor]:
-    """Loads cached MeSH descriptor embeddings or computes them using Ollama."""
+    # Loads cached MeSH descriptor embeddings or computes them using Ollama
     if os.path.exists(CACHE_PATH):
         logging.info(f"Loading cached MeSH embeddings from '{CACHE_PATH}'...")
         with open(CACHE_PATH, "rb") as f:
@@ -183,14 +183,14 @@ def match_card_concepts(
 def main():
     logging.info(f"Initializing Local MeSH Embedding Tagger | Compute Device: {DEVICE}")
 
-    # 1. Parse MeSH Terms & Load Vectors
+    # Parse MeSH Terms & Load Vectors
     descriptors = parse_mesh_xml(MESH_XML_PATH)
     mesh_terms, mesh_embeddings = get_or_create_mesh_cache(descriptors)
 
-    # 2. Load Previous Script Tag History
+    # Load Previous Script Tag History
     tag_history = load_tag_history()
 
-    # 3. Connect to Database
+    # Connect to Database
     database, backup_file = get_connection(config.DB_PATH, read_only=False)
     cursor = database.cursor()
 
@@ -257,7 +257,7 @@ def main():
             if processed_count % 100 == 0:
                 logging.info(f"Evaluated {processed_count}/{len(raw_notes)} notes...")
 
-        # 4. Commit Database Updates & Save Tag History
+        # Commit Database Updates & Save Tag History
         if db_updates_queue:
             updated_records = commit_tag_updates(database, db_updates_queue)
             logging.info(f"Updated tags across {updated_records} Anki notes!")
