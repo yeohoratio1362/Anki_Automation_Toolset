@@ -18,9 +18,9 @@ def main():
     )
     
     subparsers = parser.add_subparsers(dest="command", help="Available utilities")
-    subparsers.add_parser("tag-mesh", help="Run MeSH API auto-tagging.")
+    subparsers.add_parser("tag-mesh", help="Run MeSH auto-tagging via embedding model.")
     subparsers.add_parser("tag-stats", help="Tag cards automatically using review metrics (speed & difficulty).")
-    subparsers.add_parser("export-report", help="Compile daily retention data metrics as an .md file.")
+    subparsers.add_parser("export-report", help="Compile daily retention data metrics as an .pdf file.")
     
     args = parser.parse_args()
     
