@@ -1,12 +1,11 @@
-# Core API Requests Layer
-requests>=2.31.0
-
-# Natural Language Processing & Semantics
-spacy>=3.7.0
-
-# Environment and Secret Management
+# Core Environment & Dependencies
 python-dotenv>=1.0.0
 
-# After installing dependencies, run the following command in your terminal to download the lightweight English semantic processing model used by the tool:
+# NLP & Machine Learning / Embeddings
+torch>=2.0.0
+ollama>=0.1.0
+spacy>=3.5.0
 
-# python3 -m spacy download en_core_web_sm
+# PDF & Data Visualization
+matplotlib>=3.7.0
+reportlab>=4.0.0
