@@ -50,14 +50,31 @@ Copy the example configuration file:
 ```
 cp env.example .env
 ```
-2. Install dependencies
+2. Create a virtual environment
+```
+python3 -m venv venv
+```
+Activate the virtual environment:
+  On macOS / Linux:
+```
+source venv/bin/activate
+```
+  On Windows (Command Prompt):
+```
+venv\Scripts\activate.bat
+```
+  On Windows (PowerShell):
+```
+.\venv\Scripts\Activate.ps1
+```
+3. Install dependencies
 
 ```
 python3 -m pip install -r requirements.txt
 python3 -m spacy download en_core_web_sm
 ollama pull nomic-embed-text
 ```
-3. Obtain MeSH data as XML, drag and drop into the -main folder
+4. Obtain MeSH data as XML, drag and drop into the -main folder
 
 
 ## Execution commands
