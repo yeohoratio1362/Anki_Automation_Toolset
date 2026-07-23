@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import List, Dict, Any
 
 import matplotlib
-matplotlib.use('Agg')  # Headless backend for PDF chart rendering
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 from reportlab.lib.pagesizes import letter
@@ -85,7 +85,7 @@ def get_mesh_tag_stats(cursor) -> List[Dict[str, Any]]:
 
 
 def get_deck_difficulty(cursor) -> Dict[int, Dict[str, Any]]:
-    """Computes failure rate percentages per individual deck."""
+    # Computes failure rate percentages per individual deck
     cursor.execute("""
         SELECT
             c.did,
@@ -110,7 +110,7 @@ def get_deck_difficulty(cursor) -> Dict[int, Dict[str, Any]]:
 
 
 def get_problem_cards(cursor, id_to_deck) -> List[Card]:
-    """Retrieves top 20 problem cards exceeding historical failure thresholds."""
+    # Retrieves top problem cards exceeding historical failure thresholds
     cursor.execute("""
         SELECT 
             r.cid,
@@ -143,15 +143,14 @@ def get_problem_cards(cursor, id_to_deck) -> List[Card]:
     problem_cards.sort(key=lambda x: x.fail_rate, reverse=True)
     return problem_cards[:20]
 
-
 def get_deck_names(cursor) -> Dict[int, str]:
-    """Maps deck IDs to deck names."""
+    # Deck IDs to deck names
     cursor.execute("SELECT id, name FROM decks")
     return {did: name for did, name in cursor.fetchall()}
 
 
 def get_today_stats(cursor) -> tuple:
-    """Computes review counts and retention rate recorded today."""
+    # Computes review counts and retention rate recorded today
     start_of_day = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     start_ms = int(start_of_day.timestamp() * 1000)
 
@@ -173,7 +172,7 @@ def get_today_stats(cursor) -> tuple:
 def create_mesh_chart_buffer(mesh_stats: List[Dict[str, Any]]) -> io.BytesIO:
     """Generates a horizontal bar chart of the hardest MeSH Medical concepts."""
     top_mesh = mesh_stats[:10]
-    top_mesh.reverse()  # Reverse for ascending bar chart order
+    top_mesh.reverse()
     
     concepts = [m["concept"][:25] + "..." if len(m["concept"]) > 25 else m["concept"] for m in top_mesh]
     fail_rates = [m["fail_percentage"] for m in top_mesh]
@@ -216,7 +215,7 @@ def build_pdf_report(
     weak_decks: List[Dict[str, Any]],
     problem_cards: List[Card]
 ):
-    """Compiles analytical tables and charts into a formatted PDF document."""
+    # Compiles analytical tables and charts into a formatted PDF document
     doc = SimpleDocTemplate(
         output_path,
         pagesize=letter,
