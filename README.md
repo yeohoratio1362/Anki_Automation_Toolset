@@ -35,15 +35,10 @@ anki-toolkit/
 └── run.py                    # Unified entry point / CLI subcommand router
 ```
 ## Initialization commands 
-Configure env.example, the following: 
+Configure env.example, in particular the following: 
 - Anki database path (ANKI_DB_PATH)
   - Windows: "\Users\YOUR_NAME\AppData\Roaming\Anki2\User 1\collection.anki2"
   - Mac: "/Users/YOUR_NAME/Library/Application Support/Anki2/User 1/collection.anki2"
-- JOURNAL_DIR="\Users\YOUR_NAME\Desktop"
-- MeSH XML path="\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\desc2026.xml"
-- MeSH History path = "\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\mesh_embeddings_cache.pkl"
-- MeSH cache path = "\Users\YOUR_NAME\Desktop\Anki_Automation_Toolset-main\mesh_tag_history.json"
-
 
 Others variables are optional and may be adjusted based on user preference
 
@@ -62,8 +57,9 @@ python3 -m pip install -r requirements.txt
 python3 -m spacy download en_core_web_sm
 ollama pull nomic-embed-text
 ```
+3. Obtain MeSH data as XML, drag and drop into the -main folder
 
----
+
 ## Execution commands
 
 For tagging cards based difficulty statistics (Fail rate and speed)
