@@ -460,9 +460,9 @@ def main():
 
         # Generate output PDF file path
         today_str = datetime.now().strftime("%Y-%m-%d")
-        output_pdf_path = os.path.join(config.JOURNAL_DIR, f"MeSH_Performance_Report_{today_str}.pdf")
+        output_pdf_path = os.path.join(config.JOURNAL_DIR, f"Performance_Report_{today_str}.pdf")
 
-        logging.info("Compiling visual PDF performance report...")
+        logging.info("Compiling PDF performance report...")
         build_pdf_report(
             output_path=output_pdf_path,
             today_reviews=today_reviews,
