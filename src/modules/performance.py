@@ -14,7 +14,6 @@ def main():
 
     try:
         logging.info("Scanning database review logs ('revlog') to compute performance metrics...")
-        # Modified select query structure to perfectly satisfy Card.from_db_row expectations
         cursor.execute("""
             SELECT 
                 r.cid,
@@ -33,7 +32,6 @@ def main():
 
         expected_note_tags = {}
         for row in raw_rows:
-            # Instantiate type-safe operational domain Card object model
             card = Card.from_db_row(row)
             
             if card.nid not in expected_note_tags:
@@ -48,8 +46,6 @@ def main():
                     expected_note_tags[card.nid].add(config.TAG_SLOW)
                 if card.avg_time_sec <= config.FAST_THRESHOLD_SECONDS:
                     expected_note_tags[card.nid].add(config.TAG_FAST)
-
-        # Scan for existing tracking instances
         cursor.execute("""
             SELECT id FROM notes 
             WHERE tags LIKE ? OR tags LIKE ? OR tags LIKE ? OR tags LIKE ?
@@ -89,7 +85,7 @@ def main():
             target_tags = expected_note_tags.get(note.nid, set())
             note.tags.update(target_tags)
             
-            # Commit mutations only if an actual tag change occurs
+            # Commit only if an actual tag change occurs
             if note.tags_string != original_tags_string:
                 cursor.execute("""
                     UPDATE notes 
