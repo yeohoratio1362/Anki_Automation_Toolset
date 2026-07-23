@@ -24,10 +24,12 @@ TAG_EASY = os.getenv("TAG_EASY", "practised_card")
 TAG_SLOW = os.getenv("TAG_SLOW", "slow_card")
 TAG_FAST = os.getenv("TAG_FAST", "fast_card")
 
-# MeSH Script Variables
-PREFS_PATH = os.path.join(BASE_DIR, "tag_preferences.json")
-MAX_TAGS_PER_RUN = int(os.getenv("MAX_TAGS_PER_RUN", 100))
-
-# Obsidian Module Variables
+# Report export Variables
 JOURNAL_DIR = os.getenv("JOURNAL_DIR", "")
-MIN_REVIEW_COUNT = int(os.getenv("MIN_REVIEW_COUNT", 10))
+
+# MESH Matcher Configurations
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
+SIMILARITY_THRESHOLD =os.getenv("SIMILARITY_THRESHOLD", 0.78)
+MESH_XML_PATH =os.getenv("MESH_XML_PATH", "desc2026.xml")
+CACHE_PATH = os.getenv("CACHE_PATH", "mesh_embeddings_cache.pkl")
+HISTORY_FILE = os.getenv("HISTORY_FILE", "mesh_tag_history.json")
