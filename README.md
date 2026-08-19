@@ -28,7 +28,7 @@ anki-toolkit/
 │   │
 │   └── modules/              # Independent, pluggable execution engines
 │       ├── __init__.py
-│       ├── mesh_tagger.py    # Semantic processing & NLM MeSH API interface
+│       ├── mesh_tagger.py    # Semantic processing via local embedding model and MeSH term XML
 │       ├── performance.py    # Historical card analytics tracker & tagger
 │       └── report.py         # .pdf analytical reporter
 │
